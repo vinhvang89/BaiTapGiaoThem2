@@ -46,11 +46,14 @@ public class BreadCrumb extends Material {
         Date exp = dateFormat.parse(getEXP());
         Calendar today = GregorianCalendar.getInstance();
         Calendar expDate = GregorianCalendar.getInstance();
+
         today.setTime(now);
+        int months = today.get(GregorianCalendar.MONTH) + today.get(GregorianCalendar.YEAR)*12;
         expDate.setTime(exp);
-        if(expDate.get(Calendar.MONTH) - today.get(Calendar.MONTH) <= 2)
+        int monthsEXP = expDate.get(GregorianCalendar.MONTH) + expDate.get(GregorianCalendar.YEAR)*12;
+        if(monthsEXP - months <= 2)
             return 0.4;
-        else if(expDate.get(Calendar.MONTH) - today.get(Calendar.MONTH) <= 4)
+        else if( monthsEXP - months <= 4)
             return 0.2;
         else
             return 0.05;
